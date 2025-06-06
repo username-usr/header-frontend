@@ -13,7 +13,7 @@ registerAllModules();
 const DEFAULT_FONT_FAMILY = 'arial';
 const DEFAULT_FONT_SIZE = '14';
 const BACKEND_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://header-backend-production.up.railway.app/' 
+  ? 'https://header-backend-production.up.railway.app' 
   : 'http://localhost:8000';
 
 function App() {
