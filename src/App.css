@@ -1,40 +1,168 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Roboto Mono", monospace;
+  background-color: #0e0e0e;
 }
 
 .main-nav {
-  padding: 32px 40px;
-  background-color: rgb(40, 40, 40);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 100px;
+  background-color: #0e0e0e;
   color: white;
-  font-size: 28px;
-  text-align: center;
+  position: relative;
+}
+
+.nav-logo {
+  font-size: 32px;
   font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: "Monteserrat";
+}
+
+.nav-menu {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-family: "Roboto Mono", monospace;
+}
+
+.nav-menu li:hover {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .herosection {
   display: flex;
-  font-size: 48px;
-  height: 65vh;
-  background: white;
-  color: #969696;
-  font-weight: 700;
-  text-align: center;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+  padding: 0 100px;
+  height: 90vh;
+  background: #0e0e0e;
+  color: #cccccc;
+  font-weight: 700;
+  text-align: left;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.content {
+.hero-title {
+  font-size: 42px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin-bottom: 80px;
+  text-transform: uppercase;
+  font-family: "Monteserrat";
+  background: radial-gradient(
+    ellipse at center,
+    #ffffff 0%,
+    #c4c4c4 37%,
+    #9a9a9a 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100% 100%;
+}
+
+.hero-cta {
+  border: 2px solid #cccccc;
+  background: transparent;
+  color: #cccccc;
+  padding: 12px 70px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Roboto Mono", monospace;
+}
+
+.hero-cta:hover {
+  background-color: #cccccc;
+  color: #0e0e0e;
+}
+
+/* Ensure widget bar takes full width */
+.widget-bar {
   display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1); /* Adjusted for more transparency */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px 12px 0 0; /* Rounded top corners to match widget style */
   width: 100%;
-  min-height: 400px;
   box-sizing: border-box;
 }
 
+/* macOS window control dots */
+.window-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.window-control-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.window-control-dot.red {
+  background-color: #ff5f57;
+}
+
+.window-control-dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.window-control-dot.green {
+  background-color: #28c840;
+}
+
+/* Updated content container */
+.content {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 200px);
+  min-height: 400px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.158); /* Added semi-transparent background */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.767);
+  margin: 10px auto;
+  padding: 0 0px; /* Re-added padding to match alignment */
+  border-radius: 12px;
+}
+
+/* New container for sidebar and grid to keep them horizontal */
+.content-body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: transparent; /* Ensure transparency is inherited */
+}
+
+/* Ensure sidebar and grid have transparent backgrounds */
 .sidebar {
   width: auto;
-  background-color: #000000;
+  background: transparent;
   color: white;
   padding: 20px;
   box-sizing: border-box;
@@ -48,19 +176,16 @@ body {
 .grid {
   width: 100%;
   box-sizing: border-box;
-  background-color: #1a1a1a;
+  background: transparent;
   border-radius: 0px;
   position: relative;
-}
-
-.footer {
-  padding: 9% 0;
-  background-color: #000000;
 }
 
 .toolbar {
   color: white;
   padding: 1rem 0;
+  background-color: #1a1a1a;
+  font-family: "Roboto Mono", monospace;
 }
 
 .fxbar {
@@ -78,6 +203,7 @@ body {
   font-size: 19px;
   font-style: italic;
   min-width: 20px;
+  font-family: "Roboto Mono", monospace;
 }
 
 .cell-reference {
@@ -87,7 +213,7 @@ body {
   border-radius: 4px;
   padding: 6px 12px;
   font-size: 14px;
-  font-family: "Courier New", monospace;
+  font-family: "Roboto Mono", monospace;
   min-width: 60px;
   text-align: center;
   font-weight: bold;
@@ -101,7 +227,7 @@ body {
   border-radius: 4px;
   padding: 6px 12px;
   font-size: 14px;
-  font-family: "Courier New", monospace;
+  font-family: "Roboto Mono", monospace;
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -127,6 +253,7 @@ body {
   cursor: pointer;
   height: 32px;
   min-width: 120px;
+  font-family: "Roboto Mono", monospace;
 }
 
 .font-select:hover {
@@ -150,6 +277,7 @@ body {
   cursor: pointer;
   height: 32px;
   min-width: 80px;
+  font-family: "Roboto Mono", monospace;
 }
 
 .font-size-select:hover {
@@ -177,6 +305,7 @@ body {
   min-width: 40px;
   height: 32px;
   transition: background-color 0.2s ease;
+  font-family: "Roboto Mono", monospace;
 }
 
 .format-button:hover {
@@ -228,6 +357,12 @@ body {
 .font-verdana {
   font-family: Verdana, sans-serif !important;
 }
+.font-koulen {
+  font-family: "Koulen", cursive !important;
+}
+.font-roboto {
+  font-family: "Roboto Mono", monospace !important;
+}
 
 .format-button-modal {
   margin-top: 120px;
@@ -242,6 +377,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
+  font-family: "Roboto Mono", monospace;
 }
 
 .format-button-modal:hover {
@@ -272,6 +408,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
+  font-family: "Roboto Mono", monospace;
 }
 
 .modal-header {
@@ -285,11 +422,13 @@ body {
   margin: 0;
   font-size: 18px;
   font-weight: bold;
+  font-family: "Koulen";
 }
 
 .modal-content p {
   margin: 0 0 20px 0;
   font-size: 14px;
+  font-family: "Roboto Mono", monospace;
 }
 
 .modal-cancel-button {
@@ -322,6 +461,7 @@ body {
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.2s ease;
+  font-family: "Roboto Mono", monospace;
 }
 
 .modal-close-button:hover {
@@ -337,10 +477,12 @@ body {
 
 .ai-input {
   flex: 1;
+  font-family: "Roboto Mono", monospace;
 }
 
 .send-button {
   margin-left: 0;
+  font-family: "Roboto Mono", monospace;
 }
 
 .spinning {
@@ -367,11 +509,13 @@ body {
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-family: "Roboto Mono", monospace;
 }
 
 .loading-message {
   text-align: center;
   font-style: italic;
+  font-family: "Roboto Mono", monospace;
 }
 
 .send-button:disabled {
@@ -382,4 +526,101 @@ body {
 .ai-input:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+/* Secondary font size class for 24px Roboto Mono */
+.secondary-text {
+  font-family: "Roboto Mono", monospace;
+  font-size: 24px;
+}
+
+/* Updated footer with white background */
+.footer {
+  margin-top: 66px;
+  padding: 60px 100px; /* Increased top/bottom padding for better spacing */
+  background-color: #ffffff;
+  color: #0e0e0e;
+  font-family: "Roboto Mono", monospace;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Subtle top border for separation */
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+/* Footer container for layout */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 60px; /* Increased gap for better spacing between sections */
+  max-width: 1200px; /* Constrain the width to avoid stretching on large screens */
+  margin: 0 auto; /* Center the content */
+}
+
+/* Footer section (e.g., for company info, links, etc.) */
+.footer-section {
+  padding-top: 0; /* Removed padding-top to align with container */
+  flex: 1;
+  min-width: 200px; /* Increased min-width for better layout on smaller screens */
+}
+
+/* Footer section title */
+.footer-section h3 {
+  font-family: "Montserrat", sans-serif; /* Changed to Montserrat for consistency */
+  font-size: 20px; /* Slightly larger for better hierarchy */
+  font-weight: 700; /* Bolder for emphasis */
+  margin-bottom: 24px; /* Increased spacing below title */
+  color: #0e0e0e;
+  letter-spacing: 0.5px; /* Subtle letter spacing for elegance */
+}
+
+/* Footer links */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 12px; /* Increased spacing between links */
+  font-size: 15px; /* Slightly larger for readability */
+  color: #333333; /* Darker gray for better contrast */
+}
+
+/* Footer links hover effect */
+.footer-section a {
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #0066cc; /* Changed to a blue hover effect for consistency with other links */
+}
+
+/* Footer logo */
+.footer-logo {
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px; /* Slightly larger for prominence */
+  font-weight: 800; /* Extra bold for the logo */
+  color: #0e0e0e;
+  text-transform: uppercase;
+  letter-spacing: 3px; /* Increased for better spacing */
+}
+
+/* Footer description (for company info) */
+.footer-description {
+  font-size: 14px;
+  color: #666666;
+  margin-top: 12px;
+  line-height: 1.6; /* Better readability */
+}
+
+/* Copyright notice */
+.footer-copyright {
+  text-align: center;
+  margin-top: 60px; /* Increased spacing above copyright */
+  font-size: 13px; /* Slightly larger for readability */
+  color: #999999; /* Lighter gray for subtlety */
+  font-family: "Roboto Mono", monospace;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); /* Subtle separator */
 }
