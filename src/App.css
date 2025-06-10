@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto Mono", monospace;
+  /* font-family: "Roboto Mono", monospace; */
   background-color: #0e0e0e;
 }
 
@@ -16,12 +16,12 @@ body {
 }
 
 .nav-logo {
-  font-size: 32px;
+  font-size: 44px;
   font-weight: bold;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-family: "Monteserrat";
+  letter-spacing: 4px;
+  font-family: "Koulen";
 }
 
 .nav-menu {
@@ -183,9 +183,9 @@ body {
 
 .toolbar {
   color: white;
-  padding: 1rem 0;
+  padding: 1.3rem 0;
   background-color: #1a1a1a;
-  font-family: "Roboto Mono", monospace;
+  /* font-family: "Roboto Mono", monospace; */
 }
 
 .fxbar {
@@ -244,7 +244,7 @@ body {
 
 .font-select {
   margin-left: 16px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px 12px;
   background-color: #333;
   color: white;
@@ -253,7 +253,7 @@ body {
   cursor: pointer;
   height: 32px;
   min-width: 120px;
-  font-family: "Roboto Mono", monospace;
+  /* font-family: "Roboto Mono", monospace; */
 }
 
 .font-select:hover {
@@ -268,7 +268,7 @@ body {
 
 .font-size-select {
   margin-left: 16px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px 12px;
   background-color: #333;
   color: white;
@@ -277,7 +277,7 @@ body {
   cursor: pointer;
   height: 32px;
   min-width: 80px;
-  font-family: "Roboto Mono", monospace;
+  /* font-family: "Roboto Mono", monospace; */
 }
 
 .font-size-select:hover {
@@ -408,7 +408,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  font-family: "Roboto Mono", monospace;
+  /* font-family: "Roboto Mono", monospace; */
 }
 
 .modal-header {
@@ -422,7 +422,8 @@ body {
   margin: 0;
   font-size: 18px;
   font-weight: bold;
-  font-family: "Koulen";
+  margin-bottom: 8px;
+  /* font-family: "Koulen"; */
 }
 
 .modal-content p {
@@ -526,6 +527,44 @@ body {
 .ai-input:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.template-preview {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.loading-message {
+  text-align: center;
+  font-style: italic;
+  font-family: "Roboto Mono", monospace;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.template-card {
+  background-color: #333;
+  padding: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-grow: 1;
+}
+
+.template-card:hover {
+  background-color: #444;
+}
+
+.template-preview {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 4px;
 }
 
 /* Secondary font size class for 24px Roboto Mono */

@@ -13,20 +13,16 @@ function Export({ data, mergedCells, cellStyles, cellClassMap }) {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Sheet1');
 
-    // // Merged Title
-    // const colCount = data[0]?.length || 1;
-    // worksheet.mergeCells('A1:' + String.fromCharCode(65 + colCount - 1) + '1');
-    // const titleCell = worksheet.getCell('A1');
-    // // titleCell.value = 'Spreadsheet Data Export';
-    // titleCell.font = { name: 'Arial Black', size: 16, bold: true, color: { argb: 'FFFFFFFF' } };
-    // titleCell.alignment = { vertical: 'middle', horizontal: 'center' };
-    // titleCell.fill = {
-    //   type: 'pattern',
-    //   pattern: 'solid',
-    //   fgColor: { argb: 'FF4CAF50' }
-    // };
+    // Merged Title (as per your code, disabled)
+    const colCount = data[0]?.length || 1;
+    worksheet.mergeCells('A1:' + String.fromCharCode(65 + colCount - 1) + '1');
+    const titleCell = worksheet.getCell('A1');
+    // titleCell.value = 'Spreadsheet Data Export';
+    titleCell.font = { name: 'Arial Black', size: 16, bold: true, color: { argb: 'FFFFFFFF' } };
+    titleCell.alignment = { vertical: 'middle', horizontal: 'center' };
+    // titleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF4CAF50' } };
 
-    // Add data rows and apply styles directly from data and cellStyles/cellClassMap
+    // Add data rows and apply styles
     data.forEach((row, rowIndex) => {
       const excelRow = worksheet.addRow(row.map(cell => (cell == null ? '' : cell.toString())));
       excelRow.eachCell({ includeEmpty: true }, (cell, colNumber) => {
@@ -41,7 +37,7 @@ function Export({ data, mergedCells, cellStyles, cellClassMap }) {
             italic: style.italic === true,
             color: { argb: style.color ? 'FF' + style.color.replace('#', '') : 'FF000000' }
           };
-          if (style.background) {
+          if (style.background && style.background !== 'transparent') {
             cell.fill = {
               type: 'pattern',
               pattern: 'solid',
@@ -49,12 +45,8 @@ function Export({ data, mergedCells, cellStyles, cellClassMap }) {
             };
           }
         }
-        // cell.border = {
-        //   top: { style: 'thin' },
-        //   left: { style: 'thin' },
-        //   bottom: { style: 'thin' },
-        //   right: { style: 'thin' }
-        // };
+        // No borders unless specified
+        cell.border = {};
       });
     });
 
@@ -79,7 +71,7 @@ function Export({ data, mergedCells, cellStyles, cellClassMap }) {
               italic: style.italic === true,
               color: { argb: style.color ? 'FF' + style.color.replace('#', '') : 'FF000000' }
             };
-            if (style.background) {
+            if (style.background && style.background !== 'transparent') {
               mergedCell.fill = {
                 type: 'pattern',
                 pattern: 'solid',
@@ -88,12 +80,12 @@ function Export({ data, mergedCells, cellStyles, cellClassMap }) {
             }
           }
           mergedCell.alignment = { vertical: 'middle', horizontal: 'center' };
-        //   mergedCell.border = {
-        //     top: { style: 'thin' },
-        //     left: { style: 'thin' },
-        //     bottom: { style: 'thin' },
-        //     right: { style: 'thin' }
-        //   };
+          mergedCell.border = {
+            top: { style: 'thin' },
+            left: { style: 'thin' },
+            bottom: { style: 'thin' },
+            right: { style: 'thin' }
+          };
         }
       } catch (error) {
         console.error('Error merging cells:', merge, error);

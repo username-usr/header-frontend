@@ -15,7 +15,7 @@ const ItalicIcon = () => (
 
 const ColorIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16">
-    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm1.5 4c-.83 0-1.5-.67-1.5-1.5S15.67 9 16.5 9s1.5.67 1.5 1.5S17.33 12 16.5 12z" fill="currentColor" />
+    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8-5 0-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm1.5 4c-.83 0-1.5-.67-1.5-1.5S15.67 9 16.5 9s1.5.67 1.5 1.5S17.33 12 16.5 12z" fill="currentColor" />
   </svg>
 );
 
@@ -48,21 +48,36 @@ function Toolbar({
   data,
   mergedCells,
   cellStyles,
-  cellClassMap // Add to props
+  cellClassMap,
+  applyStylesToSelectedCells
 }) {
   const [isExportOpen, setIsExportOpen] = useState(false);
 
   return (
     <div className="toolbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <select className='font-select' value={fontFamily} onChange={(e) => setFontFamily(e.target.value)}>
+        <select
+          className='font-select'
+          value={fontFamily}
+          onChange={(e) => {
+            setFontFamily(e.target.value);
+            applyStylesToSelectedCells('font', e.target.value);
+          }}
+        >
           <option value="arial">Arial</option>
           <option value="times">Times New Roman</option>
           <option value="courier">Courier New</option>
           <option value="verdana">Verdana</option>
         </select>
 
-        <select className='font-size-select' value={fontSize} onChange={(e) => setFontSize(e.target.value)}>
+        <select
+          className='font-size-select'
+          value={fontSize}
+          onChange={(e) => {
+            setFontSize(e.target.value);
+            applyStylesToSelectedCells('size', e.target.value);
+          }}
+        >
           <option value="10">10</option>
           <option value="12">12</option>
           <option value="14">14</option>
@@ -74,7 +89,10 @@ function Toolbar({
 
         <button
           className={`format-button ${isBold ? 'active' : ''}`}
-          onClick={() => setIsBold(!isBold)}
+          onClick={() => {
+            setIsBold(!isBold);
+            applyStylesToSelectedCells('bold', !isBold);
+          }}
           title="Bold"
         >
           <BoldIcon />
@@ -82,7 +100,10 @@ function Toolbar({
 
         <button
           className={`format-button ${isItalic ? 'active' : ''}`}
-          onClick={() => setIsItalic(!isItalic)}
+          onClick={() => {
+            setIsItalic(!isItalic);
+            applyStylesToSelectedCells('italic', !isItalic);
+          }}
           title="Italic"
         >
           <ItalicIcon />
@@ -102,6 +123,7 @@ function Toolbar({
             input.style.height = '0px';
             input.onchange = (e) => {
               setFontColor(e.target.value);
+              applyStylesToSelectedCells('color', e.target.value);
               document.body.removeChild(input);
             };
             document.body.appendChild(input);
@@ -126,6 +148,7 @@ function Toolbar({
             input.style.height = '0px';
             input.onchange = (e) => {
               setBackgroundColor(e.target.value);
+              applyStylesToSelectedCells('background', e.target.value);
               document.body.removeChild(input);
             };
             document.body.appendChild(input);
@@ -156,12 +179,12 @@ function Toolbar({
           </svg>
         </button>
         {isExportOpen && (
-          <div style={{ position: 'absolute', top: '40px', right: '-100', zIndex: 1000 }}>
+          <div style={{ position: 'absolute', top: '40px', right: '0', zIndex: 1000 }}>
             <Export
               data={data}
               mergedCells={mergedCells}
               cellStyles={cellStyles}
-              cellClassMap={cellClassMap} // Pass to Export
+              cellClassMap={cellClassMap}
             />
           </div>
         )}
