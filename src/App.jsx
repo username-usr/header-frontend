@@ -42,6 +42,7 @@ function App() {
   const [isBackgroundPickerOpen, setIsBackgroundPickerOpen] = useState(false);
   const backgroundButtonRef = useRef(null);
   const [mergedCells, setMergedCells] = useState([]);
+  const gridRef = useRef(null);
 
   dataRef.current = data;
 
@@ -385,6 +386,7 @@ function App() {
       handleAiSubmit={handleAiSubmit}
       handleAiKeyDown={handleAiKeyDown}
       handleMergeToggle={handleMergeToggle}
+      gridRef={gridRef}
     />
   );
 }

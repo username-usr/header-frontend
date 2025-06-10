@@ -6,6 +6,7 @@ import Toolbar from './Toolbar';
 import FxBar from './FxBar';
 import AIModal from './AIModal';
 import MergeCellButton from './MergeCellButton';
+import Export from './Export';
 
 function AppContent({
   hotRef,
@@ -53,8 +54,10 @@ function AppContent({
   handleFxSubmit,
   handleAiSubmit,
   handleAiKeyDown,
-  handleMergeToggle
+  handleMergeToggle,
+  gridRef
 }) {
+  const [cellClassMap, setCellClassMap] = useState({});
   useEffect(() => {
     let holder = null;
     const handleScroll = () => {
@@ -86,6 +89,7 @@ function AppContent({
 
     hot.suspendRender();
 
+    const updatedClassMap = {};
     for (let index = 0; index < selectedCells.length; index++) {
       const [row1, col1, row2, col2] = selectedCells[index];
       const startRow = Math.max(Math.min(row1, row2), 0);
@@ -114,12 +118,17 @@ function AppContent({
             color: fontColor,
             background: backgroundColor
           };
+          updatedClassMap[`${r},${c}`] = uniqueClass; // Map cell (row,col) to class
         }
       }
 
       setCellStyles(prev => ({
         ...prev,
         ...updatedStyles
+      }));
+      setCellClassMap(prev => ({
+        ...prev,
+        ...updatedClassMap
       }));
     }
     hot.resumeRender();
@@ -184,13 +193,15 @@ function AppContent({
       const tableEl = document.querySelector('.hot-container');
       const toolbarEl = document.querySelector('.toolbar');
       const modalEl = document.querySelector('.modal');
+      const exportEl = document.querySelector('.export-controls');
 
       if (
         tableEl &&
         !tableEl.contains(e.target) &&
         toolbarEl &&
         !toolbarEl.contains(e.target) &&
-        (!modalEl || !modalEl.contains(e.target))
+        (!modalEl || !modalEl.contains(e.target)) &&
+        (!exportEl || !exportEl.contains(e.target))
       ) {
         hot.deselectCell();
         setFontFamily('arial');
@@ -247,9 +258,12 @@ function AppContent({
           SPREADSHEETS WITH EASE<br />
           —START RIGHT NOW
         </div>
-        <button className="hero-cta">Try Now</button>
+        <button className="hero-cta" onClick={() => gridRef.current?.scrollIntoView({ behavior: 'smooth' })}>
+          Try Now
+        </button>
       </div>
       <div className="content">
+        <div className="grid" ref={gridRef}></div>
         <div className="widget-bar">
           <div className="window-controls">
             <div className="window-control-dot red"></div>
@@ -284,6 +298,10 @@ function AppContent({
               backgroundColor={backgroundColor}
               setBackgroundColor={setBackgroundColor}
               handleMergeToggle={handleMergeToggle}
+              data={data}
+              mergedCells={mergedCells}
+              cellStyles={cellStyles}
+              cellClassMap={cellClassMap}
             />
             <FxBar
               fxValue={fxValue}

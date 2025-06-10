@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Export from './Export';
 
 const BoldIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16">
@@ -43,98 +44,128 @@ function Toolbar({
   setFontColor,
   backgroundColor,
   setBackgroundColor,
-  handleMergeToggle
+  handleMergeToggle,
+  data,
+  mergedCells,
+  cellStyles,
+  cellClassMap // Add to props
 }) {
+  const [isExportOpen, setIsExportOpen] = useState(false);
+
   return (
-    <div className="toolbar">
-      <select className='font-select' value={fontFamily} onChange={(e) => setFontFamily(e.target.value)}>
-        <option value="arial">Arial</option>
-        <option value="times">Times New Roman</option>
-        <option value="courier">Courier New</option>
-        <option value="verdana">Verdana</option>
-      </select>
+    <div className="toolbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <select className='font-select' value={fontFamily} onChange={(e) => setFontFamily(e.target.value)}>
+          <option value="arial">Arial</option>
+          <option value="times">Times New Roman</option>
+          <option value="courier">Courier New</option>
+          <option value="verdana">Verdana</option>
+        </select>
 
-      <select className='font-size-select' value={fontSize} onChange={(e) => setFontSize(e.target.value)}>
-        <option value="10">10</option>
-        <option value="12">12</option>
-        <option value="14">14</option>
-        <option value="16">16</option>
-        <option value="18">18</option>
-        <option value="20">20</option>
-        <option value="24">24</option>
-      </select>
+        <select className='font-size-select' value={fontSize} onChange={(e) => setFontSize(e.target.value)}>
+          <option value="10">10</option>
+          <option value="12">12</option>
+          <option value="14">14</option>
+          <option value="16">16</option>
+          <option value="18">18</option>
+          <option value="20">20</option>
+          <option value="24">24</option>
+        </select>
 
-      <button
-        className={`format-button ${isBold ? 'active' : ''}`}
-        onClick={() => setIsBold(!isBold)}
-        title="Bold"
-      >
-        <BoldIcon />
-      </button>
+        <button
+          className={`format-button ${isBold ? 'active' : ''}`}
+          onClick={() => setIsBold(!isBold)}
+          title="Bold"
+        >
+          <BoldIcon />
+        </button>
 
-      <button
-        className={`format-button ${isItalic ? 'active' : ''}`}
-        onClick={() => setIsItalic(!isItalic)}
-        title="Italic"
-      >
-        <ItalicIcon />
-      </button>
+        <button
+          className={`format-button ${isItalic ? 'active' : ''}`}
+          onClick={() => setIsItalic(!isItalic)}
+          title="Italic"
+        >
+          <ItalicIcon />
+        </button>
 
-      <button
-        className="format-button"
-        onClick={(event) => {
-          const input = document.createElement('input');
-          input.type = 'color';
-          input.value = fontColor;
-          input.style.position = 'absolute';
-          input.style.left = `${event.currentTarget.offsetLeft}px`;
-          input.style.top = `${event.currentTarget.offsetTop + event.currentTarget.offsetHeight}px`;
-          input.style.opacity = '0';
-          input.style.width = '0px';
-          input.style.height = '0px';
-          input.onchange = (e) => {
-            setFontColor(e.target.value);
-            document.body.removeChild(input);
-          };
-          document.body.appendChild(input);
-          input.click();
-        }}
-        title="Font Color"
-      >
-        <ColorIcon />
-      </button>
+        <button
+          className="format-button"
+          onClick={(event) => {
+            const input = document.createElement('input');
+            input.type = 'color';
+            input.value = fontColor;
+            input.style.position = 'absolute';
+            input.style.left = `${event.currentTarget.offsetLeft}px`;
+            input.style.top = `${event.currentTarget.offsetTop + event.currentTarget.offsetHeight}px`;
+            input.style.opacity = '0';
+            input.style.width = '0px';
+            input.style.height = '0px';
+            input.onchange = (e) => {
+              setFontColor(e.target.value);
+              document.body.removeChild(input);
+            };
+            document.body.appendChild(input);
+            input.click();
+          }}
+          title="Font Color"
+        >
+          <ColorIcon />
+        </button>
 
-      <button
-        className="format-button"
-        onClick={(event) => {
-          const input = document.createElement('input');
-          input.type = 'color';
-          input.value = backgroundColor;
-          input.style.position = 'absolute';
-          input.style.left = `${event.currentTarget.offsetLeft}px`;
-          input.style.top = `${event.currentTarget.offsetTop + event.currentTarget.offsetHeight}px`;
-          input.style.opacity = '0';
-          input.style.width = '0px';
-          input.style.height = '0px';
-          input.onchange = (e) => {
-            setBackgroundColor(e.target.value);
-            document.body.removeChild(input);
-          };
-          document.body.appendChild(input);
-          input.click();
-        }}
-        title="Background Color"
-      >
-        <BackgroundColorIcon />
-      </button>
+        <button
+          className="format-button"
+          onClick={(event) => {
+            const input = document.createElement('input');
+            input.type = 'color';
+            input.value = backgroundColor;
+            input.style.position = 'absolute';
+            input.style.left = `${event.currentTarget.offsetLeft}px`;
+            input.style.top = `${event.currentTarget.offsetTop + event.currentTarget.offsetHeight}px`;
+            input.style.opacity = '0';
+            input.style.width = '0px';
+            input.style.height = '0px';
+            input.onchange = (e) => {
+              setBackgroundColor(e.target.value);
+              document.body.removeChild(input);
+            };
+            document.body.appendChild(input);
+            input.click();
+          }}
+          title="Background Color"
+        >
+          <BackgroundColorIcon />
+        </button>
 
-      <button
-        className="format-button"
-        onClick={handleMergeToggle}
-        title="Merge Selected Cells"
-      >
-        <MergeIcon />
-      </button>
+        <button
+          className="format-button"
+          onClick={handleMergeToggle}
+          title="Merge Selected Cells"
+        >
+          <MergeIcon />
+        </button>
+      </div>
+
+      <div style={{ position: 'relative' }}>
+        <button
+          className="format-button"
+          onClick={() => setIsExportOpen(!isExportOpen)}
+          title="Export Options"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor" />
+          </svg>
+        </button>
+        {isExportOpen && (
+          <div style={{ position: 'absolute', top: '40px', right: '-100', zIndex: 1000 }}>
+            <Export
+              data={data}
+              mergedCells={mergedCells}
+              cellStyles={cellStyles}
+              cellClassMap={cellClassMap} // Pass to Export
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
