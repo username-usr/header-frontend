@@ -366,7 +366,8 @@ function AppContent({
                 outsideClickDeselects={false}
                 width="100%"
                 height="100%"
-                stretchH="all"
+                colWidths={150}
+                // stretchH="all"
                 manualColumnResize={true}
                 manualRowResize={true}
                 contextMenu={true}

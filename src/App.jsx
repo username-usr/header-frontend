@@ -22,7 +22,7 @@ function App() {
   const hotRef = useRef(null);
   const dataRef = useRef();
   const [data, setData] = useState(
-    Array.from({ length: 30 }, () => Array(30).fill(''))
+    Array.from({ length: 20 }, () => Array(15).fill(''))
   );
   const [fontFamily, setFontFamily] = useState(DEFAULT_FONT_FAMILY);
   const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
