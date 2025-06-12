@@ -466,7 +466,7 @@ body {
 .ai-input {
   flex: 1;
   font-family: "Roboto Mono", monospace;
-  width: 100%; /* Full width */
+  width: 97.5%; /* Full width */
 }
 
 .send-button {
