@@ -209,7 +209,7 @@ body {
   display: flex;
   align-items: left;
   flex-wrap: wrap; /* Allow buttons to wrap */
-  justify-content: center; /* Center buttons */
+  justify-content: left; /* Center buttons */
   width: 100%; /* Take full width */
   gap: 8px; /* Space between buttons */
 }
