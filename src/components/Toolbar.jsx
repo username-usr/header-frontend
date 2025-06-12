@@ -54,7 +54,7 @@ function Toolbar({
   const [isExportOpen, setIsExportOpen] = useState(false);
 
   return (
-    <div className="toolbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <div className="toolbar">
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <select
           className='font-select'

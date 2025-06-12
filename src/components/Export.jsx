@@ -121,6 +121,9 @@ function Export({ data, mergedCells, cellStyles, cellClassMap }) {
         className="format-button"
         onClick={exportToXLSX}
         title="Export to XLSX"
+        style={{
+          marginLeft:"10px"
+        }}
       >
         <ExportIcon /> XLSX
       </button>

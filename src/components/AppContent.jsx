@@ -192,8 +192,8 @@ function AppContent({
 
       setFontFamily(style.font || 'arial');
       setFontSize(style.size || '14');
-      setFontColor(style.color || '#000000');
-      setBackgroundColor(style.background || '#FFFFFF');
+      setFontColor(style.color || '#FFFFFF');
+      setBackgroundColor(style.background || '#0e0e0e');
       setIsBold(!!style.bold);
       setIsItalic(!!style.italic);
     };
@@ -238,8 +238,8 @@ function AppContent({
         setSelectedCells([]);
         setFontFamily('arial');
         setFontSize('14');
-        setFontColor('#000000');
-        setBackgroundColor('#FFFFFF');
+        setFontColor('#FFFFFF');
+        setBackgroundColor('#0e0e0e');
         setIsBold(false);
         setIsItalic(false);
         setCurrentCellRef('');
@@ -320,7 +320,7 @@ function AppContent({
               className="format-button-modal"
               onClick={() => setIsTemplateModalOpen(true)}
               title="Templates"
-              style={{ marginTop: '10px' }}
+              // style={{ marginTop: '10px' }}
             >
               <svg viewBox="0 0 24 24" width="16" height="16">
                 <path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zm-9 9h7v7H4v-7zm9 0h7v7h-7v-7z" fill="currentColor" />
@@ -356,7 +356,7 @@ function AppContent({
               isEditingFx={isEditingFx}
               setIsEditingFx={setIsEditingFx}
             />
-            <div className="ht-theme-main-dark hot-container" style={{ height: '600px', position: 'relative' }}>
+            <div className="ht-theme-main-dark hot-container" style={{ position: 'relative' }}>
               <HotTable
                 ref={hotRef}
                 data={data}

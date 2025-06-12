@@ -1,22 +1,26 @@
+/* Base Styles (Mobile-first) */
 body {
   margin: 0;
   padding: 0;
-  /* font-family: "Roboto Mono", monospace; */
   background-color: #0e0e0e;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* Main Navigation */
 .main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 100px;
+  padding: 20px; /* Base padding for mobile */
   background-color: #0e0e0e;
   color: white;
   position: relative;
+  flex-direction: column; /* Stack logo and menu on small screens */
+  gap: 15px;
 }
 
 .nav-logo {
-  font-size: 44px;
+  font-size: 32px; /* Smaller base font size */
   font-weight: bold;
   color: white;
   text-transform: uppercase;
@@ -26,14 +30,16 @@ body {
 
 .nav-menu {
   display: flex;
-  gap: 22px;
+  gap: 15px; /* Reduced gap for mobile */
   list-style: none;
   margin: 0;
   padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-menu li {
-  font-size: 16px;
+  font-size: 14px; /* Smaller base font size */
   font-weight: 500;
   color: #ffffff;
   cursor: pointer;
@@ -45,27 +51,29 @@ body {
   color: rgba(255, 255, 255, 0.45);
 }
 
+/* Hero Section */
 .herosection {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  margin-top: 30px;
-  padding: 0 100px;
-  height: 90vh;
+  align-items: center; /* Center align for mobile */
+  margin-top: 0; /* Remove top margin for mobile */
+  padding: 0 20px; /* Reduced padding for mobile */
+  height: auto; /* Auto height for content */
+  min-height: 50vh; /* Minimum height for mobile */
   background: #0e0e0e;
   color: #cccccc;
   font-weight: 700;
-  text-align: left;
+  text-align: center; /* Center align text */
   box-sizing: border-box;
   position: relative;
 }
 
 .hero-title {
-  font-size: 42px;
+  font-size: 32px; /* Smaller base font size */
   line-height: 1.2;
   letter-spacing: 1px;
-  margin-bottom: 80px;
+  margin-bottom: 40px; /* Reduced margin */
   text-transform: uppercase;
   font-family: "Monteserrat";
   background: radial-gradient(
@@ -84,8 +92,8 @@ body {
   border: 2px solid #cccccc;
   background: transparent;
   color: #cccccc;
-  padding: 12px 70px;
-  font-size: 18px;
+  padding: 10px 40px; /* Adjusted padding */
+  font-size: 16px; /* Smaller base font size */
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
@@ -102,11 +110,11 @@ body {
 .widget-bar {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.1); /* Adjusted for more transparency */
+  padding: 8px; /* Reduced padding */
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px 12px 0 0; /* Rounded top corners to match widget style */
+  border-radius: 8px 8px 0 0; /* Match new content border radius */
   width: 100%;
   box-sizing: border-box;
 }
@@ -139,68 +147,87 @@ body {
 .content {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 200px);
+  width: calc(100% - 20px); /* Full width with small margin */
   min-height: 400px;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.158); /* Added semi-transparent background */
+  background: rgba(255, 255, 255, 0.158);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.767);
+  box-shadow: none; /* No shadow on mobile */
   margin: 10px auto;
-  padding: 0 0px; /* Re-added padding to match alignment */
-  border-radius: 12px;
+  padding: 0; /* Remove padding, inner elements handle it */
+  border-radius: 8px;
 }
 
 /* New container for sidebar and grid to keep them horizontal */
 .content-body {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Stack sidebar and grid vertically on mobile */
   width: 100%;
-  background: transparent; /* Ensure transparency is inherited */
+  background: transparent;
 }
 
 /* Ensure sidebar and grid have transparent backgrounds */
 .sidebar {
-  width: auto;
+  width: 100%; /* Full width for sidebar on mobile */
   background: transparent;
   color: white;
-  padding: 20px;
+  padding: 15px; /* Adjusted padding */
   box-sizing: border-box;
-  min-height: 400px;
+  min-height: auto; /* Auto height */
   border-radius: 0px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row; /* Layout buttons horizontally */
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add a separator */
 }
 
 .grid {
-  width: 100%;
+  width: 100%; /* Full width for grid */
+  max-width: 100%;
   box-sizing: border-box;
   background: transparent;
   border-radius: 0px;
   position: relative;
+  overflow-x: auto; /* Scroll instead of overflowing */
 }
 
 .toolbar {
   color: white;
-  padding: 1.3rem 0;
+  padding: 10px; /* Reduced padding */
   background-color: #1a1a1a;
-  /* font-family: "Roboto Mono", monospace; */
+  display: flex;
+  align-items: flex-start; /* Align items to start */
+  justify-content: space-between;
+  flex-direction: column; /* Stack toolbar sections vertically */
+  gap: 10px;
+}
+
+.toolbar > div {
+  display: flex;
+  align-items: left;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+  justify-content: center; /* Center buttons */
+  width: 100%; /* Take full width */
+  gap: 8px; /* Space between buttons */
 }
 
 .fxbar {
   background-color: #2a2a2a;
-  padding: 12px 16px;
+  padding: 10px; /* Reduced padding */
   border-bottom: 1px solid #444;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px; /* Reduced gap */
+  flex-wrap: wrap; /* Allow elements to wrap */
 }
 
 .fx-label {
   color: white;
   font-weight: bold;
-  font-size: 19px;
+  font-size: 16px; /* Smaller font size */
   font-style: italic;
   min-width: 20px;
   font-family: "Roboto Mono", monospace;
@@ -211,10 +238,10 @@ body {
   color: white;
   border: 1px solid #555;
   border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 4px 8px; /* Reduced padding */
+  font-size: 12px; /* Smaller font size */
   font-family: "Roboto Mono", monospace;
-  min-width: 60px;
+  min-width: 50px; /* Smaller min-width */
   text-align: center;
   font-weight: bold;
 }
@@ -225,8 +252,8 @@ body {
   color: white;
   border: 1px solid #555;
   border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 4px 8px; /* Reduced padding */
+  font-size: 13px; /* Smaller font size */
   font-family: "Roboto Mono", monospace;
   outline: none;
   transition: border-color 0.2s ease;
@@ -242,48 +269,26 @@ body {
   font-style: italic;
 }
 
-.font-select {
-  margin-left: 16px;
-  font-size: 14px;
-  padding: 8px 12px;
-  background-color: #333;
-  color: white;
-  border: 1px solid #555;
-  border-radius: 4px;
-  cursor: pointer;
-  height: 32px;
-  min-width: 120px;
-  /* font-family: "Roboto Mono", monospace; */
-}
-
-.font-select:hover {
-  background-color: #444;
-}
-
-.font-select:focus {
-  outline: none;
-  border-color: #0066cc;
-  background-color: #444;
-}
-
+.font-select,
 .font-size-select {
-  margin-left: 16px;
-  font-size: 14px;
-  padding: 8px 12px;
+  margin-left: 0; /* Remove margin */
+  font-size: 13px; /* Smaller base font size */
+  padding: 6px 10px; /* Adjusted padding */
   background-color: #333;
   color: white;
   border: 1px solid #555;
   border-radius: 4px;
   cursor: pointer;
-  height: 32px;
-  min-width: 80px;
-  /* font-family: "Roboto Mono", monospace; */
+  height: 30px; /* Slightly smaller height */
+  min-width: unset; /* Allow shrinking */
 }
 
+.font-select:hover,
 .font-size-select:hover {
   background-color: #444;
 }
 
+.font-select:focus,
 .font-size-select:focus {
   outline: none;
   border-color: #0066cc;
@@ -291,19 +296,19 @@ body {
 }
 
 .format-button {
-  margin-left: 16px;
-  padding: 8px 12px;
+  margin-left: 0; /* Remove margin */
+  padding: 5px 10px; /* Adjusted padding */
   background-color: #333;
   color: white;
   border: 1px solid #555;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px; /* Smaller base font size */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 40px;
-  height: 32px;
+  min-width: unset; /* Allow shrinking */
+  height: 30px; /* Slightly smaller height */
   transition: background-color 0.2s ease;
   font-family: "Roboto Mono", monospace;
 }
@@ -318,67 +323,42 @@ body {
 }
 
 .format-button svg {
-  width: 16px;
-  height: 16px;
+  width: 14px; /* Smaller icon size */
+  height: 14px;
   fill: currentColor;
 }
 
-.font-10 {
-  font-size: 10px !important;
-}
-.font-12 {
-  font-size: 12px !important;
-}
-.font-14 {
-  font-size: 14px !important;
-}
-.font-16 {
-  font-size: 16px !important;
-}
-.font-18 {
-  font-size: 18px !important;
-}
-.font-20 {
-  font-size: 20px !important;
-}
-.font-24 {
-  font-size: 24px !important;
-}
+.font-10 { font-size: 10px !important; }
+.font-12 { font-size: 12px !important; }
+.font-14 { font-size: 14px !important; }
+.font-16 { font-size: 16px !important; }
+.font-18 { font-size: 18px !important; }
+.font-20 { font-size: 20px !important; }
+.font-24 { font-size: 24px !important; }
 
-.font-arial {
-  font-family: Arial, sans-serif !important;
-}
-.font-times {
-  font-family: "Times New Roman", serif !important;
-}
-.font-courier {
-  font-family: "Courier New", monospace !important;
-}
-.font-verdana {
-  font-family: Verdana, sans-serif !important;
-}
-.font-koulen {
-  font-family: "Koulen", cursive !important;
-}
-.font-roboto {
-  font-family: "Roboto Mono", monospace !important;
-}
+.font-arial { font-family: Arial, sans-serif !important; }
+.font-times { font-family: "Times New Roman", serif !important; }
+.font-courier { font-family: "Courier New", monospace !important; }
+.font-verdana { font-family: Verdana, sans-serif !important; }
+.font-koulen { font-family: "Koulen", cursive !important; }
+.font-roboto { font-family: "Roboto Mono", monospace !important; }
 
 .format-button-modal {
-  margin-top: 120px;
-  padding: 12px 12px;
+  margin-top: 0;
+  padding: 8px 10px;
   background-color: #333;
   color: white;
   border: 1px solid #555;
   border-radius: 4px;
-  cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
   font-family: "Roboto Mono", monospace;
+  width: auto;
 }
+
 
 .format-button-modal:hover {
   background-color: #444;
@@ -389,46 +369,52 @@ body {
   border-color: #0066cc;
 }
 
+/* Modal adjustments */
 .modal {
-  position: absolute;
-  top: 40px;
-  right: 25px;
-  z-index: 1000;
+  position: fixed; /* Use fixed for full screen overlay */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  z-index: 2000; /* Ensure it's on top */
 }
 
 .modal-content {
   background-color: #2a2a2a;
   color: white;
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
   border: 1px solid #555;
-  border-radius: 8px;
-  width: 300px;
-  height: 400px;
-  overflow: auto;
+  border-radius: 12px;
+  width: 90%; /* Take more width on mobile */
+  height: auto; /* Adjust height based on content */
+  max-height: 90vh; /* Max height to prevent overflow */
+  overflow-y: auto; /* Allow scrolling if content overflows */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  /* font-family: "Roboto Mono", monospace; */
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Adjusted margin */
 }
 
 .modal-content h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px; /* Smaller font size */
   font-weight: bold;
   margin-bottom: 8px;
-  /* font-family: "Koulen"; */
 }
 
 .modal-content p {
-  margin: 0 0 20px 0;
-  font-size: 14px;
+  margin: 0 0 15px 0; /* Adjusted margin */
+  font-size: 13px; /* Smaller font size */
   font-family: "Roboto Mono", monospace;
 }
 
@@ -448,8 +434,8 @@ body {
 }
 
 .modal-cancel-button svg {
-  width: 16px;
-  height: 16px;
+  width: 14px; /* Smaller icon size */
+  height: 14px;
   fill: currentColor;
 }
 
@@ -472,18 +458,22 @@ body {
 .ai-input-container {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: auto;
+  gap: 10px; /* Reduced gap */
+  margin-top: 20px; /* Adjusted margin */
+  flex-direction: column; /* Stack input and button vertically */
 }
 
 .ai-input {
   flex: 1;
   font-family: "Roboto Mono", monospace;
+  width: 100%; /* Full width */
 }
 
 .send-button {
   margin-left: 0;
   font-family: "Roboto Mono", monospace;
+  width: 100%; /* Full width */
+  padding: 10px;
 }
 
 .spinning {
@@ -501,22 +491,29 @@ body {
 
 .ai-model-select {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start; /* Align to start */
+  gap: 5px; /* Reduced gap */
+  flex-direction: column; /* Stack label and select vertically */
 }
 
 .ai-model-select select {
   flex: 1;
-  padding: 4px 8px;
+  padding: 8px; /* Adjusted padding */
   border: 1px solid #ccc;
   border-radius: 4px;
   font-family: "Roboto Mono", monospace;
+  width: 100%; /* Full width */
 }
 
 .loading-message {
   text-align: center;
   font-style: italic;
   font-family: "Roboto Mono", monospace;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .send-button:disabled {
@@ -536,17 +533,6 @@ body {
   border-radius: 4px;
 }
 
-.loading-message {
-  text-align: center;
-  font-style: italic;
-  font-family: "Roboto Mono", monospace;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .template-card {
   background-color: #333;
   padding: 15px;
@@ -560,13 +546,6 @@ body {
   background-color: #444;
 }
 
-.template-preview {
-  width: 100%;
-  height: auto;
-  margin: 10px 0;
-  border-radius: 4px;
-}
-
 /* Secondary font size class for 24px Roboto Mono */
 .secondary-text {
   font-family: "Roboto Mono", monospace;
@@ -575,13 +554,13 @@ body {
 
 /* Updated footer with white background */
 .footer {
-  margin-top: 66px;
-  padding: 60px 100px; /* Increased top/bottom padding for better spacing */
+  margin-top: 40px; /* Reduced margin */
+  padding: 30px 20px; /* Reduced padding */
   background-color: #ffffff;
   color: #0e0e0e;
   font-family: "Roboto Mono", monospace;
-  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Subtle top border for separation */
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Footer container for layout */
@@ -589,26 +568,30 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 60px; /* Increased gap for better spacing between sections */
-  max-width: 1200px; /* Constrain the width to avoid stretching on large screens */
-  margin: 0 auto; /* Center the content */
+  gap: 30px; /* Reduced gap */
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-direction: column; /* Stack sections vertically */
+  align-items: center;
+  text-align: center;
 }
 
 /* Footer section (e.g., for company info, links, etc.) */
 .footer-section {
-  padding-top: 0; /* Removed padding-top to align with container */
+  padding-top: 0;
   flex: 1;
-  min-width: 200px; /* Increased min-width for better layout on smaller screens */
+  min-width: unset; /* Remove min-width */
+  width: 100%; /* Full width */
 }
 
 /* Footer section title */
 .footer-section h3 {
-  font-family: "Montserrat", sans-serif; /* Changed to Montserrat for consistency */
-  font-size: 20px; /* Slightly larger for better hierarchy */
-  font-weight: 700; /* Bolder for emphasis */
-  margin-bottom: 24px; /* Increased spacing below title */
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px; /* Smaller font size */
+  font-weight: 700;
+  margin-bottom: 15px; /* Reduced spacing */
   color: #0e0e0e;
-  letter-spacing: 0.5px; /* Subtle letter spacing for elegance */
+  letter-spacing: 0.5px;
 }
 
 /* Footer links */
@@ -619,9 +602,9 @@ body {
 }
 
 .footer-section li {
-  margin-bottom: 12px; /* Increased spacing between links */
-  font-size: 15px; /* Slightly larger for readability */
-  color: #333333; /* Darker gray for better contrast */
+  margin-bottom: 8px; /* Reduced spacing */
+  font-size: 14px; /* Smaller font size */
+  color: #333333;
 }
 
 /* Footer links hover effect */
@@ -632,48 +615,51 @@ body {
 }
 
 .footer-section a:hover {
-  color: #0066cc; /* Changed to a blue hover effect for consistency with other links */
+  color: #0066cc;
 }
 
 /* Footer logo */
 .footer-logo {
   font-family: "Montserrat", sans-serif;
-  font-size: 28px; /* Slightly larger for prominence */
-  font-weight: 800; /* Extra bold for the logo */
+  font-size: 24px; /* Smaller font size */
+  font-weight: 800;
   color: #0e0e0e;
   text-transform: uppercase;
-  letter-spacing: 3px; /* Increased for better spacing */
+  letter-spacing: 3px;
 }
 
 /* Footer description (for company info) */
 .footer-description {
-  font-size: 14px;
+  font-size: 13px; /* Smaller font size */
   color: #666666;
   margin-top: 12px;
-  line-height: 1.6; /* Better readability */
+  line-height: 1.6;
 }
 
 /* Copyright notice */
 .footer-copyright {
   text-align: center;
-  margin-top: 60px; /* Increased spacing above copyright */
-  font-size: 13px; /* Slightly larger for readability */
-  color: #999999; /* Lighter gray for subtlety */
+  margin-top: 30px; /* Reduced spacing */
+  font-size: 12px; /* Smaller font size */
+  color: #999999;
   font-family: "Roboto Mono", monospace;
   padding-top: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05); /* Subtle separator */
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Styling for the export dropdown container */
 .export-controls {
   display: flex;
   flex-direction: column;
-  background-color: #2d2d2d; /* Dark background to match spreadsheet theme */
+  background-color: #2d2d2d;
   border: 1px solid #444;
   border-radius: 4px;
   padding: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: none; /* No shadow on mobile */
   min-width: 120px;
+  position: static !important; /* Override absolute positioning */
+  margin-top: 10px; /* Add margin to separate */
+  width: 100%;
 }
 
 /* Styling for each export button in the dropdown */
@@ -711,7 +697,7 @@ body {
 
 /* Add spacing to the right of the export button in the toolbar */
 .toolbar .format-button[title="Export Options"] {
-  margin-right: 20px;
+  margin-right: 0; /* Remove margin */
 }
 
 /* Styling for the multi-page modal input and navigation */
@@ -719,10 +705,10 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: space-between; /* Pushes input to center, button to bottom */
+  justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-  gap: 20px;
+  padding: 10px 0; /* Reduced padding */
+  gap: 15px; /* Reduced gap */
 }
 
 .modal-header-nav {
@@ -730,14 +716,14 @@ body {
   align-items: center;
   width: 100%;
   justify-content: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Reduced margin */
 }
 
 .modal-header-nav h4 {
   margin: 0;
   flex-grow: 1;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1em; /* Smaller font size */
   color: #cccccc;
 }
 
@@ -768,7 +754,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 80%; /* Adjust width for better input field */
+  width: 95%; /* Adjusted width */
   gap: 8px;
 }
 
@@ -779,13 +765,13 @@ body {
 
 .modal-input {
   width: 100%;
-  padding: 10px 12px;
+  padding: 8px 10px; /* Reduced padding */
   border: 1px solid #555;
   border-radius: 4px;
   background-color: #333;
   color: #ffffff;
   font-family: "Roboto Mono", monospace;
-  font-size: 1em;
+  font-size: 0.9em; /* Smaller font size */
   outline: none;
   box-sizing: border-box;
 }
@@ -804,16 +790,16 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 8px 15px; /* Reduced padding */
   background-color: #0066cc;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.9em; /* Smaller font size */
   font-weight: bold;
   transition: background-color 0.2s ease;
-  margin-top: auto; /* Push button to bottom */
+  margin-top: auto;
 }
 
 .modal-submit-button:hover {
@@ -830,21 +816,21 @@ body {
 /* Styling for radio button group */
 .radio-group {
   display: flex;
-  gap: 20px;
+  gap: 8px; /* Reduced gap */
   margin-top: 10px;
+  flex-direction: column; /* Stack radio buttons vertically */
 }
 
 .radio-group label {
   display: flex;
   align-items: center;
   font-size: 1em;
-  color: #ffffff; /* White text for radio labels */
+  color: #ffffff;
   cursor: pointer;
 }
 
 .radio-group input[type="radio"] {
   margin-right: 8px;
-  /* Customize radio button appearance */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -858,11 +844,585 @@ body {
 }
 
 .radio-group input[type="radio"]:checked {
-  background-color: #0066cc; /* Blue when checked */
+  background-color: #0066cc;
   border-color: #0066cc;
 }
 
 .radio-group input[type="radio"]:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.5); /* Focus ring */
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.5);
+}
+
+/* Handsontable container */
+.ht-theme-main-dark.hot-container {
+  height: 400px !important; /* Adjusted height for mobile viewing */
+  width: 100%;
+}
+
+
+/* --- Media Queries for larger devices --- */
+
+/* Tablets (min-width: 768px and max-width: 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Main Navigation */
+  .main-nav {
+    padding: 25px 50px;
+    flex-direction: row; /* Row direction for tablets */
+    gap: 20px;
+  }
+
+  .nav-logo {
+    font-size: 38px;
+  }
+
+  .nav-menu li {
+    font-size: 15px;
+  }
+
+  /* Hero Section */
+  .herosection {
+    padding: 0 50px;
+    min-height: 70vh;
+    align-items: flex-start; /* Align to start for tablets */
+    text-align: left;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    margin-bottom: 60px;
+  }
+
+  .hero-cta {
+    padding: 11px 60px;
+    font-size: 17px;
+  }
+
+  /* Content Container */
+  .content {
+    width: calc(100% - 60px); /* Wider for tablets */
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.767); /* Re-add shadow */
+    border-radius: 12px;
+  }
+
+  /* Widget Bar */
+  .widget-bar {
+    padding: 10px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* Content Body (Sidebar + Grid) */
+  .content-body {
+    flex-direction: row; /* Horizontal layout for tablets */
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: auto; /* Auto width for sidebar */
+    padding: 20px;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 12px;
+    border-bottom: none; /* Remove bottom separator */
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* Add right separator */
+  }
+
+  .format-button-modal {
+    margin-top: 20px; /* Restore top margin */
+    padding: 12px 12px;
+    font-size: 20px;
+    width: auto;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    padding: 1.3rem 12px;
+    flex-direction: row; /* Horizontal toolbar */
+    align-items: left;
+    justify-content: space-between;
+    gap: 10px; /* No gap */
+  }
+
+  .toolbar > div {
+    flex-wrap: nowrap; /* No wrapping for buttons */
+    justify-content: flex-start; /* Align to start */
+    width: auto; /* Auto width */
+  }
+
+  .font-select,
+  .font-size-select,
+  .format-button {
+    margin-left: 16px; /* Restore left margin */
+    height: 32px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-width: unset;
+  }
+
+  .format-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Export dropdown positioning */
+  .toolbar > div:last-child {
+    position: relative; /* Restore relative positioning */
+    width: auto;
+    display: block; /* Restore block display */
+    margin-top: 0;
+  }
+
+  .export-controls {
+    position: absolute !important; /* Restore absolute positioning */
+    top: 40px;
+    right: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Restore shadow */
+    margin-top: 0;
+    width: auto;
+  }
+
+  /* Fx Bar */
+  .fxbar {
+    padding: 12px 16px;
+    gap: 12px;
+    flex-wrap: nowrap; /* No wrapping */
+  }
+
+  .fx-label {
+    font-size: 19px;
+  }
+
+  .cell-reference {
+    min-width: 60px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .fx-input {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Handsontable container */
+  .ht-theme-main-dark.hot-container {
+    height: 600px !important; /* Restore desktop height */
+    width: 100%;
+  }
+
+  /* Modal adjustments */
+  .modal {
+    position: absolute; /* Revert to absolute for tablet/desktop */
+    top: 40px;
+    right: 25px;
+    left: auto; /* Reset left */
+    bottom: auto; /* Reset bottom */
+    background-color: transparent; /* Remove background overlay */
+  }
+
+  .modal-content {
+    width: 300px; /* Restore desktop width */
+    height: 400px; /* Restore desktop height */
+    max-width: none; /* Remove max-width */
+    max-height: none; /* Remove max-height */
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    margin-bottom: 10px;
+  }
+
+  .modal-content h3 {
+    font-size: 18px;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+    margin: 0 0 20px 0;
+  }
+
+  .modal-cancel-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ai-input-container {
+    flex-direction: row; /* Row direction */
+    gap: 12px;
+    margin-top: auto; /* Push button to bottom */
+  }
+
+  .ai-input {
+    width: auto; /* Auto width */
+  }
+
+  .send-button {
+    width: auto; /* Auto width */
+    padding: 8px 12px;
+  }
+
+  .ai-model-select {
+    flex-direction: row; /* Row direction */
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-model-select select {
+    width: auto; /* Auto width */
+    padding: 4px 8px;
+  }
+
+  .template-input-page {
+    padding: 20px 0;
+    gap: 20px;
+  }
+
+  .modal-header-nav {
+    margin-bottom: 20px;
+  }
+
+  .modal-header-nav h4 {
+    font-size: 1.2em;
+  }
+
+  .input-group {
+    width: 80%; /* Restore desktop width */
+  }
+
+  .modal-input {
+    padding: 10px 12px;
+    font-size: 1em;
+  }
+
+  .modal-submit-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .radio-group {
+    flex-direction: row; /* Row direction */
+    gap: 20px;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 66px;
+    padding: 60px 50px;
+  }
+
+  .footer-container {
+    flex-direction: row; /* Row direction */
+    gap: 60px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .footer-section {
+    min-width: 200px;
+    width: auto;
+  }
+
+  .footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .footer-section li {
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+
+  .footer-logo {
+    font-size: 28px;
+  }
+
+  .footer-description {
+    font-size: 14px;
+  }
+
+  .footer-copyright {
+    margin-top: 60px;
+    font-size: 13px;
+  }
+}
+
+/* Desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+  /* Main Navigation */
+  .main-nav {
+    padding: 30px 100px;
+    flex-direction: row;
+    gap: 22px;
+  }
+
+  .nav-logo {
+    font-size: 44px;
+  }
+
+  .nav-menu li {
+    font-size: 16px;
+  }
+
+  /* Hero Section */
+  .herosection {
+    padding: 0 100px;
+    height: 90vh;
+    min-height: auto;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-title {
+    font-size: 42px;
+    margin-bottom: 80px;
+  }
+
+  .hero-cta {
+    padding: 12px 70px;
+    font-size: 18px;
+  }
+
+  /* Content Container */
+  .content {
+    width: calc(100% - 200px); /* Wider for desktops */
+    margin: 10px auto;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.767);
+    border-radius: 12px;
+    padding: 0;
+  }
+
+  /* Widget Bar */
+  .widget-bar {
+    padding: 8px 12px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* Content Body (Sidebar + Grid) */
+  .content-body {
+    flex-direction: row;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: auto;
+    margin-top: 100px;
+    padding: 20px;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 400px;
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .format-button-modal {
+    margin-top: 20px;
+    padding: 12px 12px;
+    font-size: 20px;
+    width: auto;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    padding: 1.3rem 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .toolbar > div {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: auto;
+  }
+
+  .font-select,
+  .font-size-select,
+  .format-button {
+    margin-left: 16px;
+    height: 32px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-width: unset;
+  }
+
+  .format-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Export dropdown positioning */
+  .toolbar .format-button[title="Export Options"] {
+    margin-right: 20px; /* Restore desktop margin */
+  }
+
+  .export-controls {
+    position: absolute !important;
+    top: 40px;
+    right: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 0;
+    width: auto;
+  }
+
+  /* Fx Bar */
+  .fxbar {
+    padding: 12px 16px;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .fx-label {
+    font-size: 19px;
+  }
+
+  .cell-reference {
+    min-width: 60px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .fx-input {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Handsontable container */
+  .ht-theme-main-dark.hot-container {
+    height: 600px !important;
+    width: 100%;
+  }
+
+  /* Modal adjustments */
+  .modal {
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    background-color: transparent;
+    justify-content: right;
+  }
+
+  .modal-content {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .modal-header {
+    margin-bottom: 10px;
+  }
+
+  .modal-content h3 {
+    font-size: 18px;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+    margin: 0 0 20px 0;
+  }
+
+  .modal-cancel-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ai-input-container {
+    flex-direction: row;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .ai-input {
+    width: auto;
+  }
+
+  .send-button {
+    width: auto;
+    padding: 8px 12px;
+  }
+
+  .ai-model-select {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-model-select select {
+    width: auto;
+    padding: 4px 8px;
+  }
+
+  .template-input-page {
+    padding: 20px 0;
+    gap: 20px;
+  }
+
+  .modal-header-nav {
+    margin-bottom: 20px;
+  }
+
+  .modal-header-nav h4 {
+    font-size: 1.2em;
+  }
+
+  .input-group {
+    width: 80%;
+  }
+
+  .modal-input {
+    padding: 10px 12px;
+    font-size: 1em;
+  }
+
+  .modal-submit-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .radio-group {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 66px;
+    padding: 60px 100px;
+  }
+
+  .footer-container {
+    flex-direction: row;
+    gap: 60px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .footer-section {
+    min-width: 200px;
+    width: auto;
+  }
+
+  .footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .footer-section li {
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+
+  .footer-logo {
+    font-size: 28px;
+  }
+
+  .footer-description {
+    font-size: 14px;
+  }
+
+  .footer-copyright {
+    margin-top: 60px;
+    font-size: 13px;
+  }
 }
